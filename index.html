@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kresko Lab - Consultoría de Emprendimiento</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="assets/logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="preloader-content">
+            <div class="logo-container large">
+                <i class="fas fa-lightbulb"></i>
+            </div>
+            <div class="spinner"></div>
+            <div class="loading-text">Cargando Experiencia</div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo-container">
+                    <i class="fas fa-lightbulb"></i>
+                    <span>Kresko Lab</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#inicio"><i class="fas fa-home"></i> Inicio</a></li>
+                    <li><a href="#nosotros"><i class="fas fa-users"></i> Nosotros</a></li>
+                    <li><a href="#servicios"><i class="fas fa-cogs"></i> Servicios</a></li>
+                    <li><a href="#contacto"><i class="fas fa-envelope"></i> Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="hero-background">
+            <video autoplay muted loop>
+                <source src="background.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="hero-content">
+            <h1>Transformando Ideas en Realidad</h1>
+            <p>Somos tu socio estratégico en el viaje del emprendimiento. Con más de 10 años de experiencia, hemos ayudado a más de 500 empresas a alcanzar sus objetivos.</p>
+            <div class="hero-buttons">
+                <a href="#contacto" class="btn btn-primary">
+                    <i class="fas fa-rocket"></i>
+                    <span>Iniciar Proyecto</span>
+                </a>
+                <a href="#servicios" class="btn btn-secondary">
+                    <i class="fas fa-info-circle"></i>
+                    <span>Conoce Más</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="nosotros" class="about">
+        <div class="container">
+            <h2 class="section-title">
+                <i class="fas fa-star"></i>
+                Nuestra Historia
+            </h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>En Kresko Lab, creemos que cada emprendedor tiene el potencial de cambiar el mundo. Nuestra misión es proporcionar las herramientas, conocimientos y apoyo necesarios para hacer realidad esas visiones.</p>
+                    <div class="mission-statement">
+                        <i class="fas fa-quote-left"></i>
+                        <p>Transformamos ideas en negocios exitosos a través de estrategias innovadoras y un enfoque personalizado.</p>
+                        <i class="fas fa-quote-right"></i>
+                    </div>
+                </div>
+                <div class="stats">
+                    <div class="stat-item">
+                        <i class="fas fa-users"></i>
+                        <h3>500+</h3>
+                        <p>Clientes Satisfechos</p>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>95%</h3>
+                        <p>Tasa de Éxito</p>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-clock"></i>
+                        <h3>10+</h3>
+                        <p>Años de Experiencia</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="servicios" class="services">
+        <div class="container">
+            <h2 class="section-title">
+                <i class="fas fa-cogs"></i>
+                Nuestros Servicios
+            </h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Desarrollo Web</h3>
+                    <p>Creación de sitios web profesionales y personalizados.</p>
+                    <div class="service-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Diseño Responsivo</li>
+                            <li><i class="fas fa-check"></i> Optimización SEO</li>
+                            <li><i class="fas fa-check"></i> Soporte 24/7</li>
+                        </ul>
+                    </div>
+                    <div class="service-price">
+                        <span class="price">€50</span>
+                        <span class="period">/proyecto</span>
+                    </div>
+                    <a href="https://discord.gg/phBkZcYP" class="btn btn-primary" target="_blank">
+                        <i class="fab fa-discord"></i> Contratar por Discord
+                    </a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Desarrollo Móvil</h3>
+                    <p>Aplicaciones móviles nativas y multiplataforma.</p>
+                    <div class="service-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> iOS y Android</li>
+                            <li><i class="fas fa-check"></i> Diseño UI/UX</li>
+                            <li><i class="fas fa-check"></i> Integración API</li>
+                        </ul>
+                    </div>
+                    <div class="service-price">
+                        <span class="price">€75</span>
+                        <span class="period">/proyecto</span>
+                    </div>
+                    <a href="https://discord.gg/phBkZcYP" class="btn btn-primary" target="_blank">
+                        <i class="fab fa-discord"></i> Contratar por Discord
+                    </a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h3>Mentor Profesional Premium</h3>
+                    <p>Sesiones personalizadas de mentoría profesional.</p>
+                    <div class="service-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Sesiones 1:1</li>
+                            <li><i class="fas fa-check"></i> Plan Personalizado</li>
+                            <li><i class="fas fa-check"></i> Soporte Continuo</li>
+                        </ul>
+                    </div>
+                    <div class="service-price">
+                        <span class="price">€25</span>
+                        <span class="period">/sesión</span>
+                    </div>
+                    <a href="https://discord.gg/phBkZcYP" class="btn btn-primary" target="_blank">
+                        <i class="fab fa-discord"></i> Contratar por Discord
+                    </a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-bullhorn"></i>
+                    </div>
+                    <h3>Marketing Digital</h3>
+                    <p>Estrategias de marketing digital efectivas.</p>
+                    <div class="service-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> SEO y SEM</li>
+                            <li><i class="fas fa-check"></i> Redes Sociales</li>
+                            <li><i class="fas fa-check"></i> Análisis de Datos</li>
+                        </ul>
+                    </div>
+                    <div class="service-price">
+                        <span class="price">€60</span>
+                        <span class="period">/mes</span>
+                    </div>
+                    <a href="https://discord.gg/phBkZcYP" class="btn btn-primary" target="_blank">
+                        <i class="fab fa-discord"></i> Contratar por Discord
+                    </a>
+                </div>
+            </div>
+            <div class="service-note">
+                <p><i class="fas fa-info-circle"></i> Todos nuestros servicios incluyen soporte técnico y actualizaciones. Planes flexibles sin compromisos a largo plazo.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>¿Listo para Transformar tu Idea en Realidad?</h2>
+                <p>Únete a los cientos de emprendedores que han logrado el éxito con nuestra ayuda.</p>
+                <a href="#contacto" class="btn btn-primary">
+                    <i class="fas fa-rocket"></i>
+                    <span>Comienza Ahora</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contacto" class="contact">
+        <div class="container">
+            <h2 class="section-title">
+                <i class="fas fa-envelope"></i>
+                Contáctanos
+            </h2>
+            <div class="contact-content">
+                <form class="contact-form">
+                    <div class="input-group">
+                        <i class="fas fa-user"></i>
+                        <input type="text" placeholder="Nombre completo" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" placeholder="Correo electrónico" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-phone"></i>
+                        <input type="tel" placeholder="Teléfono">
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-briefcase"></i>
+                        <select required>
+                            <option value="">Selecciona un servicio</option>
+                            <option value="planificacion">Planificación Estratégica</option>
+                            <option value="marketing">Marketing Digital</option>
+                            <option value="mentoria">Mentoría</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-comment"></i>
+                        <textarea placeholder="Cuéntanos sobre tu proyecto" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i>
+                        <span>Enviar Mensaje</span>
+                    </button>
+                </form>
+                <div class="contact-info">
+                    <div class="info-item">
+                        <i class="fab fa-discord"></i>
+                        <p><a href="https://discord.gg/phBkZcYP" target="_blank">Únete a nuestro Discord</a></p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <p>info@kreskolab.com</p>
+                    </div>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <div class="logo-container">
+                        <i class="fas fa-lightbulb"></i>
+                        <span>Kresko Lab</span>
+                    </div>
+                    <p>Transformando ideas en negocios exitosos</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#inicio"><i class="fas fa-home"></i> Inicio</a>
+                    <a href="#nosotros"><i class="fas fa-users"></i> Nosotros</a>
+                    <a href="#servicios"><i class="fas fa-cogs"></i> Servicios</a>
+                    <a href="#contacto"><i class="fas fa-envelope"></i> Contacto</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Kresko Lab. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal de Compra -->
+    <div id="purchaseModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="purchase-header">
+                <h2>Completar Compra</h2>
+                <div class="service-details">
+                    <span class="service-name"></span>
+                    <span class="service-price"></span>
+                </div>
+            </div>
+            <form id="purchaseForm">
+                <div class="form-section">
+                    <h3>Información Personal</h3>
+                    <div class="input-group">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="customerName" placeholder="Nombre completo" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="customerEmail" placeholder="Correo electrónico" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-phone"></i>
+                        <input type="tel" id="customerPhone" placeholder="Teléfono" required>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>Método de Pago</h3>
+                    <div class="payment-methods">
+                        <div class="payment-options">
+                            <label class="payment-option">
+                                <input type="radio" name="paymentMethod" value="paypal" required>
+                                <div class="payment-icon">
+                                    <img src="assets/paypal.png" alt="PayPal">
+                                    <span>PayPal</span>
+                                </div>
+                            </label>
+                            <label class="payment-option">
+                                <input type="radio" name="paymentMethod" value="bizum" required>
+                                <div class="payment-icon">
+                                    <img src="assets/bizum.png" alt="Bizum">
+                                    <span>Bizum</span>
+                                </div>
+                            </label>
+                            <label class="payment-option">
+                                <input type="radio" name="paymentMethod" value="paysafecard" required>
+                                <div class="payment-icon">
+                                    <img src="assets/paysafecard.png" alt="Paysafecard">
+                                    <span>Paysafecard</span>
+                                </div>
+                            </label>
+                            <label class="payment-option">
+                                <input type="radio" name="paymentMethod" value="card" required>
+                                <div class="payment-icon">
+                                    <img src="assets/card.png" alt="Tarjeta">
+                                    <span>Tarjeta</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="card-details" id="cardDetails" style="display: none;">
+                        <div class="input-group">
+                            <i class="fas fa-credit-card"></i>
+                            <input type="text" id="cardNumber" placeholder="Número de tarjeta" maxlength="16">
+                        </div>
+                        <div class="card-row">
+                            <div class="input-group">
+                                <i class="fas fa-calendar"></i>
+                                <input type="text" id="cardExpiry" placeholder="MM/AA" maxlength="5">
+                            </div>
+                            <div class="input-group">
+                                <i class="fas fa-lock"></i>
+                                <input type="text" id="cardCvv" placeholder="CVV" maxlength="3">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>Resumen de Compra</h3>
+                    <div class="purchase-summary">
+                        <div class="summary-item">
+                            <span>Servicio:</span>
+                            <span class="summary-service"></span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Precio:</span>
+                            <span class="summary-price"></span>
+                        </div>
+                        <div class="summary-item total">
+                            <span>Total:</span>
+                            <span class="summary-total"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <div class="terms-checkbox">
+                        <input type="checkbox" id="terms" required>
+                        <label for="terms">Acepto los <a href="#" class="terms-link">términos y condiciones</a></label>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-lock"></i>
+                    <span>Pagar Ahora</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de Términos -->
+    <div id="termsModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Términos y Condiciones</h2>
+            <div class="terms-content">
+                <h3>1. Servicios</h3>
+                <p>Los servicios ofrecidos por Kresko Lab incluyen desarrollo web, desarrollo móvil, mentoría profesional y marketing digital. Cada servicio tiene sus propias especificaciones y condiciones.</p>
+
+                <h3>2. Pagos</h3>
+                <p>Los pagos se procesan a través de métodos seguros. No almacenamos información de tarjetas de crédito. Todos los precios incluyen IVA.</p>
+
+                <h3>3. Política de Reembolso</h3>
+                <p>Ofrecemos reembolsos dentro de los 14 días posteriores a la compra si el servicio no ha comenzado. Los reembolsos se procesarán en un plazo de 5-7 días hábiles.</p>
+
+                <h3>4. Privacidad</h3>
+                <p>Respetamos tu privacidad y protegemos tus datos personales. Consulta nuestra política de privacidad para más información.</p>
+            </div>
+            <button class="btn btn-primary close-terms">Aceptar</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 

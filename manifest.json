@@ -1,0 +1,28 @@
+{
+    "name": "Emopewr",
+    "short_name": "Emopewr",
+    "description": "Tu socio en el camino del emprendimiento",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#2563eb",
+    "icons": [
+        {
+            "src": "images/icon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "images/icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ],
+    "orientation": "portrait",
+    "scope": "/",
+    "lang": "es",
+    "dir": "ltr",
+    "prefer_related_applications": false
+} 
