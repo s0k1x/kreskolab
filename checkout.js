@@ -13,10 +13,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Inicializar elementos
     const checkoutForm = document.getElementById('checkoutForm');
+    const paymentOptions = document.querySelectorAll('input[name="payment"]');
+    const cardDetails = document.getElementById('cardDetails');
+    const termsLink = document.getElementById('termsLink');
     const termsModal = document.getElementById('termsModal');
-    const closeModalButtons = document.querySelectorAll('.close-modal');
-    const termsLink = document.querySelector('.terms-link');
-    const closeTermsButton = document.querySelector('.close-terms');
+    const closeModal = document.querySelector('.close-modal');
 
     // Preloader
     const preloader = document.querySelector('.preloader');
@@ -27,232 +28,189 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 500);
     }, 2000);
 
-    // Mostrar/ocultar detalles de tarjeta
-    document.querySelectorAll('input[name="paymentMethod"]').forEach(method => {
-        method.addEventListener('change', function() {
-            const cardDetails = document.getElementById('cardDetails');
-            cardDetails.style.display = this.value === 'card' ? 'block' : 'none';
+    // Mostrar/ocultar detalles de tarjeta según método de pago
+    paymentOptions.forEach(option => {
+        option.addEventListener('change', function() {
+            if (this.value === 'card') {
+                cardDetails.style.display = 'block';
+            } else {
+                cardDetails.style.display = 'none';
+            }
         });
     });
 
-    // Validación de tarjeta
-    const cardNumber = document.getElementById('cardNumber');
-    const cardExpiry = document.getElementById('cardExpiry');
-    const cardCvv = document.getElementById('cardCvv');
+    // Validación de formulario
+    checkoutForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        if (!validateForm()) {
+            return;
+        }
 
-    if (cardNumber) {
-        cardNumber.addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\D/g, '');
-            if (value.length > 16) value = value.slice(0, 16);
-            e.target.value = value;
-        });
-    }
+        // Simular procesamiento de pago
+        const submitButton = this.querySelector('button[type="submit"]');
+        submitButton.disabled = true;
+        submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Procesando...';
 
-    if (cardExpiry) {
-        cardExpiry.addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\D/g, '');
-            if (value.length > 2) {
-                value = value.slice(0, 2) + '/' + value.slice(2, 4);
+        // Simular tiempo de procesamiento
+        setTimeout(() => {
+            showSuccessMessage('¡Pago procesado con éxito!');
+            submitButton.disabled = false;
+            submitButton.innerHTML = '<i class="fas fa-lock"></i><span>Pagar Ahora</span>';
+            checkoutForm.reset();
+        }, 2000);
+    });
+
+    // Validación de campos
+    function validateForm() {
+        let isValid = true;
+        const name = document.getElementById('name');
+        const email = document.getElementById('email');
+        const phone = document.getElementById('phone');
+        const selectedPayment = document.querySelector('input[name="payment"]:checked');
+
+        // Validar nombre
+        if (name.value.trim() === '') {
+            showError(name, 'Por favor ingresa tu nombre');
+            isValid = false;
+        } else {
+            removeError(name);
+        }
+
+        // Validar email
+        if (email.value.trim() === '') {
+            showError(email, 'Por favor ingresa tu email');
+            isValid = false;
+        } else if (!isValidEmail(email.value)) {
+            showError(email, 'Por favor ingresa un email válido');
+            isValid = false;
+        } else {
+            removeError(email);
+        }
+
+        // Validar teléfono
+        if (phone.value.trim() === '') {
+            showError(phone, 'Por favor ingresa tu teléfono');
+            isValid = false;
+        } else if (!isValidPhone(phone.value)) {
+            showError(phone, 'Por favor ingresa un teléfono válido');
+            isValid = false;
+        } else {
+            removeError(phone);
+        }
+
+        // Validar tarjeta si es el método seleccionado
+        if (selectedPayment.value === 'card') {
+            const cardNumber = document.getElementById('cardNumber');
+            const expiry = document.getElementById('expiry');
+            const cvv = document.getElementById('cvv');
+
+            if (!isValidCardNumber(cardNumber.value)) {
+                showError(cardNumber, 'Número de tarjeta inválido');
+                isValid = false;
+            } else {
+                removeError(cardNumber);
             }
-            e.target.value = value;
-        });
+
+            if (!isValidExpiry(expiry.value)) {
+                showError(expiry, 'Fecha de expiración inválida');
+                isValid = false;
+            } else {
+                removeError(expiry);
+            }
+
+            if (!isValidCVV(cvv.value)) {
+                showError(cvv, 'CVV inválido');
+                isValid = false;
+            } else {
+                removeError(cvv);
+            }
+        }
+
+        return isValid;
     }
 
-    if (cardCvv) {
-        cardCvv.addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\D/g, '');
-            if (value.length > 3) value = value.slice(0, 3);
-            e.target.value = value;
-        });
+    // Funciones de validación
+    function isValidEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
     }
 
-    // Abrir modal de términos
+    function isValidPhone(phone) {
+        const re = /^[0-9]{9,15}$/;
+        return re.test(phone);
+    }
+
+    function isValidCardNumber(number) {
+        const re = /^[0-9]{16}$/;
+        return re.test(number.replace(/\s/g, ''));
+    }
+
+    function isValidExpiry(expiry) {
+        const re = /^(0[1-9]|1[0-2])\/([0-9]{2})$/;
+        if (!re.test(expiry)) return false;
+        
+        const [month, year] = expiry.split('/');
+        const currentDate = new Date();
+        const currentYear = currentDate.getFullYear() % 100;
+        const currentMonth = currentDate.getMonth() + 1;
+        
+        return (parseInt(year) > currentYear) || 
+               (parseInt(year) === currentYear && parseInt(month) >= currentMonth);
+    }
+
+    function isValidCVV(cvv) {
+        const re = /^[0-9]{3,4}$/;
+        return re.test(cvv);
+    }
+
+    // Mostrar mensajes de error
+    function showError(input, message) {
+        const formGroup = input.parentElement;
+        const errorElement = formGroup.querySelector('.error-message') || document.createElement('div');
+        errorElement.className = 'error-message';
+        errorElement.textContent = message;
+        formGroup.appendChild(errorElement);
+        input.classList.add('error');
+    }
+
+    function removeError(input) {
+        const formGroup = input.parentElement;
+        const errorElement = formGroup.querySelector('.error-message');
+        if (errorElement) {
+            formGroup.removeChild(errorElement);
+        }
+        input.classList.remove('error');
+    }
+
+    // Mostrar mensaje de éxito
+    function showSuccessMessage(message) {
+        const successMessage = document.createElement('div');
+        successMessage.className = 'success-message';
+        successMessage.innerHTML = `
+            <i class="fas fa-check-circle"></i>
+            <p>${message}</p>
+        `;
+        checkoutForm.parentElement.insertBefore(successMessage, checkoutForm);
+        
+        setTimeout(() => {
+            successMessage.remove();
+        }, 5000);
+    }
+
+    // Manejo del modal de términos
     termsLink.addEventListener('click', function(e) {
         e.preventDefault();
         termsModal.style.display = 'block';
     });
 
-    // Cerrar modales
-    closeModalButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const modal = this.closest('.modal');
-            modal.style.display = 'none';
-        });
-    });
-
-    // Cerrar modal de términos
-    closeTermsButton.addEventListener('click', function() {
+    closeModal.addEventListener('click', function() {
         termsModal.style.display = 'none';
     });
 
-    // Manejar el envío del formulario
-    if (checkoutForm) {
-        checkoutForm.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const name = document.getElementById('customerName').value;
-            const email = document.getElementById('customerEmail').value;
-            const phone = document.getElementById('customerPhone').value;
-            const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked');
-            const terms = document.getElementById('terms').checked;
-            
-            // Validaciones
-            if (!paymentMethod) {
-                showError(checkoutForm, 'Por favor selecciona un método de pago');
-                return;
-            }
-
-            if (!terms) {
-                showError(checkoutForm, 'Debes aceptar los términos y condiciones');
-                return;
-            }
-
-            if (paymentMethod.value === 'card') {
-                const cardNumber = document.getElementById('cardNumber').value;
-                const cardExpiry = document.getElementById('cardExpiry').value;
-                const cardCvv = document.getElementById('cardCvv').value;
-
-                if (!isValidCardNumber(cardNumber)) {
-                    showError(checkoutForm, 'Número de tarjeta inválido');
-                    return;
-                }
-
-                if (!isValidExpiry(cardExpiry)) {
-                    showError(checkoutForm, 'Fecha de expiración inválida');
-                    return;
-                }
-
-                if (!isValidCvv(cardCvv)) {
-                    showError(checkoutForm, 'CVV inválido');
-                    return;
-                }
-            }
-
-            // Mostrar estado de carga
-            const submitButton = this.querySelector('button[type="submit"]');
-            const originalText = submitButton.innerHTML;
-            submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Procesando pago...';
-            submitButton.disabled = true;
-
-            try {
-                // Simular proceso de pago
-                await simulatePayment(service, price, email, paymentMethod.value);
-                
-                // Enviar correos
-                await sendConfirmationEmail(email, service, price, name);
-                await sendAdminNotification(email, service, price, name, phone);
-                
-                // Mostrar mensaje de éxito
-                showSuccessMessage('¡Pago completado con éxito! Hemos enviado un correo de confirmación.');
-                
-                // Redirigir a la página principal después de 3 segundos
-                setTimeout(() => {
-                    window.location.href = 'index.html';
-                }, 3000);
-                
-            } catch (error) {
-                showError(this, 'Hubo un error al procesar el pago. Por favor, intenta de nuevo.');
-            } finally {
-                // Restaurar botón
-                submitButton.innerHTML = originalText;
-                submitButton.disabled = false;
-            }
-        });
-    }
-});
-
-// Funciones auxiliares
-function showError(form, message) {
-    const errorElement = document.createElement('div');
-    errorElement.className = 'error-message';
-    errorElement.textContent = message;
-    
-    const existingError = form.querySelector('.error-message');
-    if (existingError) {
-        existingError.remove();
-    }
-    
-    form.insertBefore(errorElement, form.firstChild);
-    setTimeout(() => {
-        errorElement.remove();
-    }, 5000);
-}
-
-function showSuccessMessage(message) {
-    const successMessage = document.createElement('div');
-    successMessage.className = 'success-message';
-    successMessage.innerHTML = `
-        <i class="fas fa-check-circle"></i>
-        <p>${message}</p>
-    `;
-    
-    const checkoutSection = document.querySelector('.checkout');
-    checkoutSection.insertBefore(successMessage, checkoutSection.firstChild);
-    
-    setTimeout(() => {
-        successMessage.remove();
-    }, 5000);
-}
-
-function isValidCardNumber(number) {
-    return /^\d{16}$/.test(number);
-}
-
-function isValidExpiry(expiry) {
-    return /^\d{2}\/\d{2}$/.test(expiry);
-}
-
-function isValidCvv(cvv) {
-    return /^\d{3}$/.test(cvv);
-}
-
-// Simular proceso de pago
-async function simulatePayment(service, price, email, paymentMethod) {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            // Aquí iría la integración con la pasarela de pago real
-            // Por ahora simulamos un pago exitoso
-            resolve();
-        }, 2000);
+    window.addEventListener('click', function(e) {
+        if (e.target === termsModal) {
+            termsModal.style.display = 'none';
+        }
     });
-}
-
-// Enviar correo de confirmación al cliente
-async function sendConfirmationEmail(email, service, price, name) {
-    const response = await fetch('/api/send-email', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            to: email,
-            subject: `Confirmación de compra - ${service}`,
-            text: `Hola ${name},\n\nGracias por tu compra de ${service} por €${price}.\n\nDetalles de tu compra:\n- Servicio: ${service}\n- Precio: €${price}\n- Fecha: ${new Date().toLocaleDateString()}\n\nNos pondremos en contacto contigo pronto para comenzar con tu proyecto.\n\nSaludos,\nEl equipo de Kresko Lab`,
-            type: 'confirmation'
-        })
-    });
-    
-    if (!response.ok) {
-        throw new Error('Error al enviar correo de confirmación');
-    }
-}
-
-// Enviar notificación al administrador
-async function sendAdminNotification(email, service, price, name, phone) {
-    const response = await fetch('/api/send-email', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            to: 'admin@kreskolab.com',
-            subject: `Nueva compra - ${service}`,
-            text: `Nueva compra realizada:\n\n- Cliente: ${name}\n- Email: ${email}\n- Teléfono: ${phone}\n- Servicio: ${service}\n- Precio: €${price}\n- Fecha: ${new Date().toLocaleDateString()}\n- Método de pago: ${paymentMethod}`,
-            type: 'notification'
-        })
-    });
-    
-    if (!response.ok) {
-        throw new Error('Error al enviar notificación al administrador');
-    }
-} 
+}); 

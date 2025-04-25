@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout - EMOPEWR</title>
+    <title>Checkout - Kresko Lab</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="icon" type="image/png" href="assets/logo.png">
@@ -35,26 +35,21 @@
         </div>
     </header>
 
-    <section class="checkout-section">
+    <div class="checkout-section">
         <div class="checkout-container">
             <div class="checkout-content">
                 <div class="checkout-form">
-                    <h1 class="checkout-title">Finalizar Compra</h1>
-                    
+                    <h2>Completa tu Compra</h2>
                     <form id="checkoutForm">
-                        <h2 class="checkout-subtitle">Información Personal</h2>
-                        
-                        <div class="checkout-form-group">
+                        <div class="form-group">
                             <label for="name">Nombre Completo</label>
                             <input type="text" id="name" name="name" required>
                         </div>
-                        
-                        <div class="checkout-form-group">
+                        <div class="form-group">
                             <label for="email">Correo Electrónico</label>
                             <input type="email" id="email" name="email" required>
                         </div>
-                        
-                        <div class="checkout-form-group">
+                        <div class="form-group">
                             <label for="phone">Teléfono</label>
                             <input type="tel" id="phone" name="phone" required>
                         </div>
@@ -63,109 +58,93 @@
                             <h3>Método de Pago</h3>
                             <div class="payment-options">
                                 <label class="payment-option">
-                                    <input type="radio" name="paymentMethod" value="paypal" required>
-                                    <img src="assets/paypal.png" alt="PayPal">
-                                    PayPal
+                                    <input type="radio" name="payment" value="card" checked>
+                                    <div class="payment-icon">
+                                        <i class="fas fa-credit-card"></i>
+                                        <span>Tarjeta de Crédito</span>
+                                    </div>
                                 </label>
                                 <label class="payment-option">
-                                    <input type="radio" name="paymentMethod" value="bizum" required>
-                                    <img src="assets/bizum.png" alt="Bizum">
-                                    Bizum
+                                    <input type="radio" name="payment" value="paypal">
+                                    <div class="payment-icon">
+                                        <i class="fab fa-paypal"></i>
+                                        <span>PayPal</span>
+                                    </div>
                                 </label>
                                 <label class="payment-option">
-                                    <input type="radio" name="paymentMethod" value="paysafecard" required>
-                                    <img src="assets/paysafecard.png" alt="Paysafecard">
-                                    Paysafecard
+                                    <input type="radio" name="payment" value="crypto">
+                                    <div class="payment-icon">
+                                        <i class="fab fa-bitcoin"></i>
+                                        <span>Criptomonedas</span>
+                                    </div>
                                 </label>
-                                <label class="payment-option">
-                                    <input type="radio" name="paymentMethod" value="card" required>
-                                    <img src="assets/card.png" alt="Tarjeta">
-                                    Tarjeta
-                                </label>
+                            </div>
+
+                            <div class="card-details" id="cardDetails">
+                                <div class="card-row">
+                                    <div class="form-group">
+                                        <label for="cardNumber">Número de Tarjeta</label>
+                                        <input type="text" id="cardNumber" name="cardNumber" placeholder="1234 5678 9012 3456">
+                                    </div>
+                                </div>
+                                <div class="card-row">
+                                    <div class="form-group">
+                                        <label for="expiry">Fecha de Expiración</label>
+                                        <input type="text" id="expiry" name="expiry" placeholder="MM/YY">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="cvv">CVV</label>
+                                        <input type="text" id="cvv" name="cvv" placeholder="123">
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="card-details" id="cardDetails" style="display: none;">
-                            <h3>Detalles de la Tarjeta</h3>
-                            <div class="card-details-grid">
-                                <div class="checkout-form-group">
-                                    <label for="cardNumber">Número de Tarjeta</label>
-                                    <input type="text" id="cardNumber" name="cardNumber" placeholder="1234 5678 9012 3456">
-                                </div>
-                                <div class="checkout-form-group">
-                                    <label for="cardName">Nombre en la Tarjeta</label>
-                                    <input type="text" id="cardName" name="cardName" placeholder="Nombre Apellido">
-                                </div>
-                                <div class="checkout-form-group">
-                                    <label for="expiryDate">Fecha de Expiración</label>
-                                    <input type="text" id="expiryDate" name="expiryDate" placeholder="MM/AA">
-                                </div>
-                                <div class="checkout-form-group">
-                                    <label for="cvv">CVV</label>
-                                    <input type="text" id="cvv" name="cvv" placeholder="123">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="terms-check">
+                        <div class="terms-group">
                             <input type="checkbox" id="terms" name="terms" required>
-                            <label for="terms">
-                                Acepto los <a href="#" class="terms-link" id="termsLink">Términos y Condiciones</a>
-                            </label>
+                            <label for="terms">Acepto los <a href="#" id="termsLink">Términos y Condiciones</a></label>
                         </div>
 
-                        <button type="submit" class="checkout-btn" id="checkoutBtn">
-                            Realizar Pago
+                        <button type="submit" class="checkout-btn">
+                            <i class="fas fa-lock"></i>
+                            <span>Pagar Ahora</span>
                         </button>
                     </form>
                 </div>
 
-                <div class="checkout-summary">
-                    <h2 class="summary-title">Resumen del Pedido</h2>
+                <div class="order-summary">
+                    <h3>Resumen del Pedido</h3>
                     <div class="summary-item">
-                        <span>Servicio:</span>
-                        <span id="serviceName">-</span>
+                        <span>Servicio</span>
+                        <span id="serviceName">Mentoría Profesional</span>
                     </div>
                     <div class="summary-item">
-                        <span>Precio:</span>
-                        <span id="servicePrice">-</span>
+                        <span>Precio</span>
+                        <span id="servicePrice">€25.00</span>
                     </div>
-                    <div class="summary-item">
-                        <span>IVA (21%):</span>
-                        <span id="iva">-</span>
-                    </div>
-                    <div class="summary-item summary-total">
-                        <span>Total:</span>
-                        <span id="total">-</span>
+                    <div class="summary-total">
+                        <span>Total</span>
+                        <span id="totalPrice">€25.00</span>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Modal de Términos -->
-    <div id="termsModal" class="modal">
+    <div class="modal" id="termsModal">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
-            <h2>Términos y Condiciones</h2>
+            <h3>Términos y Condiciones</h3>
             <div class="terms-content">
-                <h3>1. Servicios</h3>
-                <p>Los servicios ofrecidos por Kresko Lab incluyen desarrollo web, desarrollo móvil, mentoría profesional y marketing digital. Cada servicio tiene sus propias especificaciones y condiciones.</p>
-
-                <h3>2. Pagos</h3>
-                <p>Los pagos se procesan a través de métodos seguros. No almacenamos información de tarjetas de crédito. Todos los precios incluyen IVA.</p>
-
-                <h3>3. Política de Reembolso</h3>
-                <p>Ofrecemos reembolsos dentro de los 14 días posteriores a la compra si el servicio no ha comenzado. Los reembolsos se procesarán en un plazo de 5-7 días hábiles.</p>
-
-                <h3>4. Privacidad</h3>
-                <p>Respetamos tu privacidad y protegemos tus datos personales. Consulta nuestra política de privacidad para más información.</p>
+                <p>1. Todos los servicios son no reembolsables una vez iniciados.</p>
+                <p>2. Las sesiones de mentoría deben ser programadas con 24 horas de anticipación.</p>
+                <p>3. El cliente puede cancelar o reprogramar hasta 2 veces sin cargo.</p>
+                <p>4. Los precios están sujetos a cambio sin previo aviso.</p>
+                <p>5. Se requiere un depósito del 50% para iniciar el servicio.</p>
             </div>
-            <button class="btn btn-primary close-terms">Aceptar</button>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="checkout.js"></script>
 </body>
-</html> 
 </html> 
